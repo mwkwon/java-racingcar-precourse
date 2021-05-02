@@ -1,8 +1,11 @@
 package io.mwkwon.racingcar;
 
+import io.mwkwon.racingcar.utils.RacingCarUtil;
+import io.mwkwon.racingcar.utils.RandomNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -44,5 +47,24 @@ public class raceCarsTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new RaceCars("car1,"))
                 .withMessageContaining("2대 이상의 차량 이름을 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"car1,car2:4:0:1", "car1,car2:3:0:0"}, delimiter = ':')
+    @DisplayName("입력한 자동차 경주 기능 테스트")
+    void raceTest(String carNames, int randomNumber, int distance, int excepted) {
+        RaceCars raceCars = new RaceCars(carNames);
+        RacingCarUtil racingCarUtil = new RacingCarUtil() {
+            @Override
+            public RandomNumber generatorRandomNumber() {
+                return new RandomNumber(randomNumber);
+            }
+        };
+        raceCars.race(racingCarUtil);
+        for (Car car : raceCars.getCars()) {
+            MoveDistance moveDistance = car.getMoveDistance();
+            int compareTo = moveDistance.compareTo(new MoveDistance(distance));
+            assertThat(compareTo).isEqualTo(excepted);
+        }
     }
 }

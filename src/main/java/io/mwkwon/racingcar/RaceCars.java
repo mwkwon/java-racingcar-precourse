@@ -1,5 +1,8 @@
 package io.mwkwon.racingcar;
 
+import io.mwkwon.racingcar.utils.RacingCarUtil;
+import io.mwkwon.racingcar.utils.RandomNumber;
+
 import java.util.*;
 
 public class RaceCars {
@@ -11,6 +14,13 @@ public class RaceCars {
         this.checkDuplicateString(carNameArray);
         this.checkCarNameSize(carNameArray);
         this.cars = this.createCars(carNameArray);
+    }
+
+    public void race(RacingCarUtil racingCarUtil) {
+        for (Car car : cars) {
+            RandomNumber randomNumber = racingCarUtil.generatorRandomNumber();
+            car.move(randomNumber);
+        }
     }
 
     public List<Car> getCars() {
