@@ -67,4 +67,16 @@ public class raceCarsTest {
             assertThat(compareTo).isEqualTo(excepted);
         }
     }
+
+    @Test
+    @DisplayName("자동차들의 이동 거리를 비교하여 최대 이동 거리 반환 테스트")
+    void findMaximumMoveDistanceTest() {
+        MoveDistance moveDistance = new MoveDistance(1);
+        RaceCars raceCars = new RaceCars("car1,car2,car3");
+
+        raceCars.race(new RacingCarUtil());
+        MoveDistance maximumMoveDistance = raceCars.findMaximumMoveDistance();
+
+        assertThat(moveDistance.compareTo(maximumMoveDistance)).isEqualTo(0);
+    }
 }

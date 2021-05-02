@@ -17,6 +17,13 @@ public class Car {
         this.moveDistance.move(randomNumber);
     }
 
+    public MoveDistance findGreaterMoveDistance(MoveDistance other) {
+        if (this.moveDistance.compareTo(other) < 0) {
+            return other;
+        }
+        return this.moveDistance;
+    }
+
     public MoveDistance getMoveDistance() {
         return moveDistance;
     }

@@ -12,5 +12,6 @@ public class RacingCarGameApplication {
         for (int i = 0; i < racingCount.getCount(); i++) {
             raceCars.race(racingCarUtil);
         }
+        MoveDistance maximumMoveDistance = raceCars.findMaximumMoveDistance();
     }
 }

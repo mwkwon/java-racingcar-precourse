@@ -23,6 +23,14 @@ public class RaceCars {
         }
     }
 
+    public MoveDistance findMaximumMoveDistance() {
+        MoveDistance maxMoveDistance = new MoveDistance(0);
+        for (Car car : cars) {
+            maxMoveDistance = car.findGreaterMoveDistance(maxMoveDistance);
+        }
+        return maxMoveDistance;
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }

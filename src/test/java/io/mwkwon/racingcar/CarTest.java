@@ -62,4 +62,13 @@ public class CarTest {
     void crateCarTest() {
         assertThatNoException().isThrownBy(() ->  new Car("myCar"));
     }
+
+    @Test
+    @DisplayName("이동 거리 객체를 비교하여 이동 거리가 큰 값을 정상 반환하는지 여부 테스트")
+    void findGreaterMoveDistanceTest() {
+        MoveDistance moveDistance = new MoveDistance(4);
+        Car car = new Car("myCar");
+        MoveDistance maximumMoveDistance = car.findGreaterMoveDistance(moveDistance);
+        assertThat(maximumMoveDistance.compareTo(moveDistance)).isEqualTo(0);
+    }
 }
