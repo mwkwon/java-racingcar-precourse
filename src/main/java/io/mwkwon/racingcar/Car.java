@@ -5,9 +5,11 @@ import io.mwkwon.racingcar.utils.RandomNumber;
 public class Car {
     public static final int INIT_MOVE_DISTANCE = 0;
 
+    private final CarName carName;
     private final MoveDistance moveDistance;
 
-    public Car() {
+    public Car(String carName) {
+        this.carName = new CarName(carName);
         this.moveDistance = new MoveDistance(INIT_MOVE_DISTANCE);
     }
 
