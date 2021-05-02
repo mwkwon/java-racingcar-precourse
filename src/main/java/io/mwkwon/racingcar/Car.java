@@ -24,6 +24,10 @@ public class Car {
         return this.moveDistance;
     }
 
+    public boolean isSameMoveDistance(MoveDistance other) {
+        return this.moveDistance.compareTo(other) == 0;
+    }
+
     public MoveDistance getMoveDistance() {
         return moveDistance;
     }

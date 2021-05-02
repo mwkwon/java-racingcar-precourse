@@ -31,6 +31,15 @@ public class RaceCars {
         return maxMoveDistance;
     }
 
+    public List<Car> findWinnerCars(MoveDistance maximumMoveDistance) {
+        List<Car> winnerCars = new ArrayList<>();
+        for (Car car : cars) {
+            boolean same = car.isSameMoveDistance(maximumMoveDistance);
+            this.addWinnerCarsBySameIsTrue(winnerCars, same, car);
+        }
+        return winnerCars;
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
@@ -69,6 +78,12 @@ public class RaceCars {
     private void checkDelimiter(String carNames) {
         if (!carNames.contains(DELIMITER)) {
             throw new IllegalArgumentException("쉼표(',')를 이용하여 차량 이름을 구분하여 입력해 주세요.");
+        }
+    }
+
+    private void addWinnerCarsBySameIsTrue(List<Car> winnerCars, boolean same, Car car) {
+        if (same) {
+            winnerCars.add(car);
         }
     }
 }

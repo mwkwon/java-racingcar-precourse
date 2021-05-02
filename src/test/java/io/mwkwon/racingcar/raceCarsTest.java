@@ -79,4 +79,20 @@ public class raceCarsTest {
 
         assertThat(moveDistance.compareTo(maximumMoveDistance)).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("우승자 판별 테스트 테스트")
+    void findWinnerCarTest() {
+        MoveDistance moveDistance = new MoveDistance(1);
+        RaceCars raceCars = new RaceCars("car1,car2,car3");
+
+        raceCars.race(new RacingCarUtil());
+        MoveDistance maximumMoveDistance = raceCars.findMaximumMoveDistance();
+        List<Car> winnerCars = raceCars.findWinnerCars(maximumMoveDistance);
+
+        for (Car winnerCar : winnerCars) {
+            int compareTo = winnerCar.getMoveDistance().compareTo(moveDistance);
+            assertThat(compareTo).isEqualTo(0);
+        }
+    }
 }

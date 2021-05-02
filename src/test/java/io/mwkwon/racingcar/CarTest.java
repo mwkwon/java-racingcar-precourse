@@ -71,4 +71,22 @@ public class CarTest {
         MoveDistance maximumMoveDistance = car.findGreaterMoveDistance(moveDistance);
         assertThat(maximumMoveDistance.compareTo(moveDistance)).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("이동 거리 객체를 비교하여 같은 이동 거리이면 true 반환 여부 체크 테스트")
+    void isSameMoveDistanceTrueTest() {
+        MoveDistance moveDistance = new MoveDistance(0);
+        Car car = new Car("myCar");
+        boolean same = car.isSameMoveDistance(moveDistance);
+        assertThat(same).isTrue();
+    }
+
+    @Test
+    @DisplayName("이동 거리 객체를 비교하여 다른 이동 거리이면 false 반환 여부 체크 테스트")
+    void isSameMoveDistanceFalseTest() {
+        MoveDistance moveDistance = new MoveDistance(1);
+        Car car = new Car("myCar");
+        boolean same = car.isSameMoveDistance(moveDistance);
+        assertThat(same).isFalse();
+    }
 }
