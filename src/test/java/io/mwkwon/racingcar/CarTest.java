@@ -69,7 +69,7 @@ public class CarTest {
         MoveDistance moveDistance = new MoveDistance(4);
         Car car = new Car("myCar");
         MoveDistance maximumMoveDistance = car.findGreaterMoveDistance(moveDistance);
-        assertThat(maximumMoveDistance.compareTo(moveDistance)).isEqualTo(0);
+        assertThat(maximumMoveDistance).isEqualTo(moveDistance);
     }
 
     @Test

@@ -3,7 +3,9 @@ package io.mwkwon.racingcar;
 import io.mwkwon.racingcar.utils.RandomNumber;
 
 public class MoveDistance implements Comparable<MoveDistance> {
-    public static final int MIN_MOVE_NUMBER = 4;
+    private static final int MIN_MOVE_NUMBER = 4;
+    private static final String STRING_DISTANCE = "-";
+    private static final String EMPTY_STRING = "";
 
     private int distance;
 
@@ -24,10 +26,10 @@ public class MoveDistance implements Comparable<MoveDistance> {
 
     @Override
     public String toString() {
-        String strDistance = "";
+        String stringDistance = EMPTY_STRING;
         for (int i = 0; i < distance; i++) {
-            strDistance += "-";
+            stringDistance += STRING_DISTANCE;
         }
-        return strDistance;
+        return stringDistance;
     }
 }

@@ -3,7 +3,7 @@ package io.mwkwon.racingcar;
 import io.mwkwon.racingcar.utils.RandomNumber;
 
 public class Car {
-    public static final int INIT_MOVE_DISTANCE = 0;
+    private static final int INIT_MOVE_DISTANCE = 0;
 
     private final CarName carName;
     private final MoveDistance moveDistance;
