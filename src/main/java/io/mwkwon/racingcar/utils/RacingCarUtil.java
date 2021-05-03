@@ -1,7 +1,9 @@
 package io.mwkwon.racingcar.utils;
 
+import io.mwkwon.racingcar.Car;
 import io.mwkwon.racingcar.RaceCars;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -26,4 +28,16 @@ public class RacingCarUtil implements RandomGenerator {
         int count = scanner.nextInt();
         return new RacingCount(count);
     }
+
+    public void printRaceResult(RaceCars raceCars) {
+        System.out.println("실행 결과");
+        for (Car car : raceCars.getCars()) {
+            System.out.println(car.printCarName() + ":" + car.printMoveDistance());
+        }
+        System.out.println("");
+    }
+    public void printWinnerCars(RaceCars raceCars) {
+        System.out.println(String.join(RaceCars.DELIMITER, raceCars.carNames()) + "가 최종 우승했습니다.");
+    }
+
 }

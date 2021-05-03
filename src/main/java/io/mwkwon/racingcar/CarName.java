@@ -13,7 +13,7 @@ public class CarName {
     }
 
     private void checkCarNameLength(String name) {
-        int nameLength = name.trim().length();
+        int nameLength = name.length();
         if (nameLength > MAX_CAR_NAME_LENGTH || nameLength < MIN_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 1자 이상 5자 이하만 입력가능합니다. 입력한 자동차 이름: " + name);
         }
@@ -27,5 +27,10 @@ public class CarName {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return  name;
     }
 }

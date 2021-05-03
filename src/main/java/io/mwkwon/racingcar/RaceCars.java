@@ -6,14 +6,27 @@ import io.mwkwon.racingcar.utils.RandomNumber;
 import java.util.*;
 
 public class RaceCars {
-    public static final String DELIMITER = ",";
-    private final List<Car> cars;
+    public static  final String DELIMITER = ",";
+    private List<Car> cars;
 
     public RaceCars(String carNames) {
         String[] carNameArray = this.createCarNameArray(carNames);
+        carNameArray = this.trimCarNames(carNameArray);
         this.checkDuplicateString(carNameArray);
         this.checkCarNameSize(carNameArray);
         this.cars = this.createCars(carNameArray);
+    }
+
+    private String[] trimCarNames(String[] carNameArray) {
+        String[] trimCarNameArray = new String[carNameArray.length];
+        for (int i = 0; i < carNameArray.length; i++) {
+            trimCarNameArray[i] = carNameArray[i].trim();
+        }
+        return trimCarNameArray;
+    }
+
+    public RaceCars(List<Car> cars) {
+        this.cars = new ArrayList<>(cars);
     }
 
     public void race(RacingCarUtil racingCarUtil) {
@@ -31,17 +44,25 @@ public class RaceCars {
         return maxMoveDistance;
     }
 
-    public List<Car> findWinnerCars(MoveDistance maximumMoveDistance) {
+    public RaceCars findWinnerCars(MoveDistance maximumMoveDistance) {
         List<Car> winnerCars = new ArrayList<>();
         for (Car car : cars) {
             boolean same = car.isSameMoveDistance(maximumMoveDistance);
             this.addWinnerCarsBySameIsTrue(winnerCars, same, car);
         }
-        return winnerCars;
+        return new RaceCars(winnerCars);
     }
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public List<String> carNames() {
+        List<String> carNames = new ArrayList<>();
+        for (Car car : cars) {
+            carNames.add(car.printCarName());
+        }
+        return carNames;
     }
 
     private List<Car> createCars(String[] carNameArray) {
@@ -67,7 +88,7 @@ public class RaceCars {
     private void checkDuplicateString(String[] carNameArray) {
         Set<String> cars = new HashSet<>();
         for (int i = 0; i < carNameArray.length; i++) {
-            cars.add(carNameArray[i].trim());
+            cars.add(carNameArray[i]);
         }
         if (cars.size() < carNameArray.length) {
             throw new IllegalArgumentException("동일한 자동차 이름이 존재합니다. 입력값: "

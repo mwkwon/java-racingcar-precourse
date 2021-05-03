@@ -21,4 +21,13 @@ public class MoveDistance implements Comparable<MoveDistance> {
     public int compareTo(MoveDistance other) {
         return this.distance - other.distance;
     }
+
+    @Override
+    public String toString() {
+        String strDistance = "";
+        for (int i = 0; i < distance; i++) {
+            strDistance += "-";
+        }
+        return strDistance;
+    }
 }

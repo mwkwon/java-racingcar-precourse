@@ -88,9 +88,9 @@ public class raceCarsTest {
 
         raceCars.race(new RacingCarUtil());
         MoveDistance maximumMoveDistance = raceCars.findMaximumMoveDistance();
-        List<Car> winnerCars = raceCars.findWinnerCars(maximumMoveDistance);
+        RaceCars winnerCars = raceCars.findWinnerCars(maximumMoveDistance);
 
-        for (Car winnerCar : winnerCars) {
+        for (Car winnerCar : winnerCars.getCars()) {
             int compareTo = winnerCar.getMoveDistance().compareTo(moveDistance);
             assertThat(compareTo).isEqualTo(0);
         }

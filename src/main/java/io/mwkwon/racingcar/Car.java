@@ -31,4 +31,12 @@ public class Car {
     public MoveDistance getMoveDistance() {
         return moveDistance;
     }
+
+    public String printCarName() {
+        return carName.toString();
+    }
+
+    public String printMoveDistance() {
+        return moveDistance.toString();
+    }
 }
