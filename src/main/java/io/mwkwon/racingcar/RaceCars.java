@@ -17,16 +17,16 @@ public class RaceCars {
         this.cars = this.createCars(carNameArray);
     }
 
+    public RaceCars(List<Car> cars) {
+        this.cars = new ArrayList<>(cars);
+    }
+
     private String[] trimCarNames(String[] carNameArray) {
         String[] trimCarNameArray = new String[carNameArray.length];
         for (int i = 0; i < carNameArray.length; i++) {
             trimCarNameArray[i] = carNameArray[i].trim();
         }
         return trimCarNameArray;
-    }
-
-    public RaceCars(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
     }
 
     public void race(RacingCarUtil racingCarUtil) {
@@ -57,7 +57,7 @@ public class RaceCars {
         return Collections.unmodifiableList(cars);
     }
 
-    public List<String> carNames() {
+    public List<String> createWinnerCarNames() {
         List<String> carNames = new ArrayList<>();
         for (Car car : cars) {
             carNames.add(car.printCarName());

@@ -28,10 +28,6 @@ public class Car {
         return this.moveDistance.compareTo(other) == 0;
     }
 
-    public MoveDistance getMoveDistance() {
-        return moveDistance;
-    }
-
     public String printCarName() {
         return carName.toString();
     }

@@ -21,7 +21,7 @@ class RacingCarUtilTest {
             }
         };
         RandomNumber randomNumber = racingCarUtil.generatorRandomNumber();
-        assertThat(randomNumber.getNumber()).isEqualTo(number);
+        assertThat(randomNumber.compareTo(number)).isEqualTo(0);
     }
 
     @ParameterizedTest

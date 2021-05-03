@@ -20,9 +20,10 @@ public class CarTest {
     void carMoveTest() {
         Car car = new Car("myCar");
         RandomNumber randomNumber = new RandomNumber(4);
+        MoveDistance other = new MoveDistance(0);
         car.move(randomNumber);
-        int compareTo = car.getMoveDistance().compareTo(new MoveDistance(0));
-        assertThat(compareTo).isGreaterThan(0);
+        MoveDistance greaterMoveDistance = car.findGreaterMoveDistance(new MoveDistance(0));
+        assertThat(greaterMoveDistance.compareTo(other)).isEqualTo(1);
     }
 
     @Test
@@ -31,14 +32,14 @@ public class CarTest {
         Car car = new Car("myCar");
         RandomNumber randomNumber = new RandomNumber(3);
         car.move(randomNumber);
-        int compareTo = car.getMoveDistance().compareTo(new MoveDistance(0));
-        assertThat(compareTo).isEqualTo(0);
+        boolean same = car.isSameMoveDistance(new MoveDistance(0));
+        assertThat(same).isTrue();
     }
 
 
     @ParameterizedTest
     @EmptySource
-    @ValueSource(strings = {"carcar", " ", "  "})
+    @ValueSource(strings = {"carcar", "my car", "my1 car"})
     @DisplayName("잘못된 자동차 이름 입력 시 에러 처리 테스트")
     void throwIllegalArgumentExceptionTest(String carName) {
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -55,7 +56,6 @@ public class CarTest {
                 .withMessage("자동차 이름은 null 값을 입력할 수 없습니다.");
 
     }
-
 
     @Test
     @DisplayName("자동차 객체 정상 생성 테스트")

@@ -12,7 +12,7 @@ public class MoveDistance implements Comparable<MoveDistance> {
     }
 
     public void move(RandomNumber randomNumber) {
-        if (randomNumber.getNumber() >= MIN_MOVE_NUMBER) {
+        if (randomNumber.compareTo(MIN_MOVE_NUMBER) >= 0) {
             this.distance++;
         }
     }

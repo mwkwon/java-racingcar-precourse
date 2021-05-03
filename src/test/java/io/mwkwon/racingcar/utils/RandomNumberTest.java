@@ -22,6 +22,6 @@ public class RandomNumberTest {
     @DisplayName("원시값 포장 랜덤값 객체 정상 생성 테스트")
     void createRandomNumberTest(int number) {
         RandomNumber randomNumber = new RandomNumber(number);
-        assertThat(randomNumber.getNumber()).isEqualTo(number);
+        assertThat(randomNumber.compareTo(number)).isEqualTo(0);
     }
 }

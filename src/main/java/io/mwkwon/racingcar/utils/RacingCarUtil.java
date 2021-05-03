@@ -3,7 +3,6 @@ package io.mwkwon.racingcar.utils;
 import io.mwkwon.racingcar.Car;
 import io.mwkwon.racingcar.RaceCars;
 
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -37,7 +36,7 @@ public class RacingCarUtil implements RandomGenerator {
         System.out.println("");
     }
     public void printWinnerCars(RaceCars raceCars) {
-        System.out.println(String.join(RaceCars.DELIMITER, raceCars.carNames()) + "가 최종 우승했습니다.");
+        System.out.println(String.join(RaceCars.DELIMITER, raceCars.createWinnerCarNames()) + "가 최종 우승했습니다.");
     }
 
 }

@@ -15,7 +15,7 @@ public class CarNameTest {
     @DisplayName("자동차 이름 원시값 포장 객체 생성 테스트")
     void createGarNameTest() {
         CarName carName = new CarName("abce");
-        String name = carName.getName();
+        String name = carName.toString();
         assertThat(name).isEqualTo("abce");
     }
 

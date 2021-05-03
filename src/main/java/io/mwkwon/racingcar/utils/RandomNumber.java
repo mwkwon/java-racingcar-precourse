@@ -1,6 +1,6 @@
 package io.mwkwon.racingcar.utils;
 
-public class RandomNumber {
+public class RandomNumber implements Comparable<Integer>{
 
     public static final int MAX_RANDOM_NUM = 9;
     public static final int MIN_RANDOM_NUM = 0;
@@ -16,7 +16,8 @@ public class RandomNumber {
         this.number = number;
     }
 
-    public int getNumber() {
-        return number;
+    @Override
+    public int compareTo(Integer other) {
+        return number - other;
     }
 }

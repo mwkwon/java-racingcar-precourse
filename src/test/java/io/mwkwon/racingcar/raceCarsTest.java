@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -50,9 +51,9 @@ public class raceCarsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"car1,car2:4:0:1", "car1,car2:3:0:0"}, delimiter = ':')
+    @CsvSource(value = {"car1,car2:4:1", "car1,car2:3:0"}, delimiter = ':')
     @DisplayName("입력한 자동차 경주 기능 테스트")
-    void raceTest(String carNames, int randomNumber, int distance, int excepted) {
+    void raceTest(String carNames, int randomNumber, int distance) {
         RaceCars raceCars = new RaceCars(carNames);
         RacingCarUtil racingCarUtil = new RacingCarUtil() {
             @Override
@@ -62,37 +63,39 @@ public class raceCarsTest {
         };
         raceCars.race(racingCarUtil);
         for (Car car : raceCars.getCars()) {
-            MoveDistance moveDistance = car.getMoveDistance();
-            int compareTo = moveDistance.compareTo(new MoveDistance(distance));
-            assertThat(compareTo).isEqualTo(excepted);
+            boolean same = car.isSameMoveDistance(new MoveDistance(distance));
+            assertThat(same).isTrue();
         }
     }
 
     @Test
     @DisplayName("자동차들의 이동 거리를 비교하여 최대 이동 거리 반환 테스트")
     void findMaximumMoveDistanceTest() {
-        MoveDistance moveDistance = new MoveDistance(1);
-        RaceCars raceCars = new RaceCars("car1,car2,car3");
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
 
-        raceCars.race(new RacingCarUtil());
+        car2.move(new RandomNumber(1));
+        RaceCars raceCars = new RaceCars(Arrays.asList(car1, car2));
         MoveDistance maximumMoveDistance = raceCars.findMaximumMoveDistance();
 
-        assertThat(moveDistance.compareTo(maximumMoveDistance)).isEqualTo(0);
+        assertThat(car2.isSameMoveDistance(maximumMoveDistance)).isTrue();
     }
 
     @Test
     @DisplayName("우승자 판별 테스트 테스트")
     void findWinnerCarTest() {
-        MoveDistance moveDistance = new MoveDistance(1);
-        RaceCars raceCars = new RaceCars("car1,car2,car3");
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Car car3 = new Car("car3");
 
-        raceCars.race(new RacingCarUtil());
-        MoveDistance maximumMoveDistance = raceCars.findMaximumMoveDistance();
+        MoveDistance maximumMoveDistance = new MoveDistance(1);
+        RaceCars raceCars = new RaceCars(Arrays.asList(car1, car2, car3));
+
+        car2.move(new RandomNumber(4));
         RaceCars winnerCars = raceCars.findWinnerCars(maximumMoveDistance);
 
         for (Car winnerCar : winnerCars.getCars()) {
-            int compareTo = winnerCar.getMoveDistance().compareTo(moveDistance);
-            assertThat(compareTo).isEqualTo(0);
+            assertThat(winnerCar).isEqualTo(car2);
         }
     }
 }
