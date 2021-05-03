@@ -37,4 +37,12 @@ public class CarNameTest {
                 .isThrownBy(() -> new CarName(carName))
                 .withMessage("자동차 이름은 null 값을 입력할 수 없습니다.");
     }
+
+    @ParameterizedTest
+    @DisplayName("자동차 이름 toString 정상 반환 테스트")
+    @ValueSource(strings = {"car1", "car2", "car3"})
+    void toStringTest(String carName) {
+        CarName name = new CarName(carName);
+        assertThat(name.toString()).isEqualTo(carName);
+    }
 }

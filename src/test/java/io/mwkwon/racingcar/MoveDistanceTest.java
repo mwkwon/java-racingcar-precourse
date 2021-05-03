@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -43,5 +44,13 @@ public class MoveDistanceTest {
         MoveDistance other = new MoveDistance(2);
         int compareTo = moveDistance.compareTo(other);
         assertThat(compareTo).isLessThan(0);
+    }
+
+    @ParameterizedTest
+    @DisplayName("이동거리 toString 정상 반환 테스트")
+    @CsvSource(value = {"1:-", "2:--", "3:---", "4:----"}, delimiter = ':')
+    void toStringTest(int distance, String excepted) {
+        MoveDistance name = new MoveDistance(distance);
+        assertThat(name.toString()).isEqualTo(excepted);
     }
 }
