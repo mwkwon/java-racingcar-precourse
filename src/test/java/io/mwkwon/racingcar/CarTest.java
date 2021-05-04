@@ -4,6 +4,7 @@ import io.mwkwon.racingcar.utils.RandomNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -88,5 +89,18 @@ public class CarTest {
         Car car = new Car("myCar");
         boolean same = car.isSameMoveDistance(moveDistance);
         assertThat(same).isFalse();
+    }
+
+    @ParameterizedTest
+    @DisplayName("주행 결과 정상 출력 테스트")
+    @CsvSource(value = {"car1:1:-", "car2:2:--", "car3:3:---", "car4:4:----", "car5:5:-----"}, delimiter = ':')
+    void generateRaceResultPrintStringTest(String carName, int loopCount, String expected) {
+        Car car = new Car(carName);
+        for (int i = 0; i < loopCount; i++) {
+            car.move(new RandomNumber(4));
+        }
+        String resultPrintString = car.generateRaceResultPrintString();
+        assertThat(resultPrintString).isEqualTo(carName + Constants.COLON_DELIMITER + expected);
+
     }
 }

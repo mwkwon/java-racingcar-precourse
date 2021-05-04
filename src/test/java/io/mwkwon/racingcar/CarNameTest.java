@@ -22,7 +22,7 @@ public class CarNameTest {
     @ParameterizedTest
     @DisplayName("자동차 이름 유효하지 않은 값 입력 시 에러 발생 테스트")
     @EmptySource
-    @ValueSource(strings = {"qwerts", " ", "  "})
+    @ValueSource(strings = {"qwerts", "car 123"})
     void throwIllegalArgumentExceptionTest(String carName) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new CarName(carName))

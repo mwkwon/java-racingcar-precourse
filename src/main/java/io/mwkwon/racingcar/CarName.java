@@ -1,6 +1,7 @@
 package io.mwkwon.racingcar;
 
 public class CarName {
+
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final int MIN_CAR_NAME_LENGTH = 1;
     private static final String ILLEGAL_ARGUMENT_ERROR_MESSAGE = "자동차 이름은 1자 이상 5자 이하만 입력가능합니다. 입력한 자동차 이름: ";

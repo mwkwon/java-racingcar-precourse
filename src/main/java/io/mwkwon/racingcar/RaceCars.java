@@ -3,10 +3,15 @@ package io.mwkwon.racingcar;
 import io.mwkwon.racingcar.utils.RacingCarUtil;
 import io.mwkwon.racingcar.utils.RandomNumber;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 
 public class RaceCars {
-    public static final String DELIMITER = ",";
+
     private static final String DELIMITER_ERROR_MESSAGE = "쉼표(',')를 이용하여 차량 이름을 구분하여 입력해 주세요.";
     private static final String DUPLICATE_ERROR_MESSAGE = "동일한 자동차 이름이 존재합니다. 입력값: ";
     private static final String CAR_NAME_SIZE_ERROR_MESSAGE = "2대 이상의 차량 이름을 입력해주세요.";
@@ -64,7 +69,7 @@ public class RaceCars {
     public List<String> createWinnerCarNames() {
         List<String> carNames = new ArrayList<>();
         for (Car car : cars) {
-            carNames.add(car.printCarName());
+            carNames.add(car.generatePrintCarName());
         }
         return carNames;
     }
@@ -80,7 +85,7 @@ public class RaceCars {
 
     private String[] createCarNameArray(String carNames) {
         this.checkDelimiter(carNames);
-        return carNames.split(DELIMITER);
+        return carNames.split(Constants.COMMA_DELIMITER);
     }
 
     private void checkCarNameSize(String[] carNames) {
@@ -92,12 +97,13 @@ public class RaceCars {
     private void checkDuplicateString(String[] carNameArray) {
         Set<String> cars = new HashSet<>(Arrays.asList(carNameArray));
         if (cars.size() < carNameArray.length) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE + String.join(DELIMITER, carNameArray));
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE +
+                    String.join(Constants.COMMA_DELIMITER, carNameArray));
         }
     }
 
     private void checkDelimiter(String carNames) {
-        if (!carNames.contains(DELIMITER)) {
+        if (!carNames.contains(Constants.COMMA_DELIMITER)) {
             throw new IllegalArgumentException(DELIMITER_ERROR_MESSAGE);
         }
     }

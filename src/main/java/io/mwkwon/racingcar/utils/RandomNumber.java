@@ -2,10 +2,9 @@ package io.mwkwon.racingcar.utils;
 
 public class RandomNumber implements Comparable<Integer>{
 
-    public static final int MAX_RANDOM_NUM = 9;
-    public static final int MIN_RANDOM_NUM = 0;
-    public static final int RANDOM_NUMBER_BOUND = 10;
-    public static final String ERROR_MESSAGE = "0에서 9사이 값만 입력 가능합니다.";
+    private static final int MAX_RANDOM_NUM = 9;
+    private static final int MIN_RANDOM_NUM = 0;
+    private static final String ERROR_MESSAGE = "0에서 9사이 값만 입력 가능합니다.";
 
     private final int number;
 

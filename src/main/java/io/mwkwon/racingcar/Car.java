@@ -3,6 +3,7 @@ package io.mwkwon.racingcar;
 import io.mwkwon.racingcar.utils.RandomNumber;
 
 public class Car {
+
     private static final int INIT_MOVE_DISTANCE = 0;
 
     private final CarName carName;
@@ -28,11 +29,12 @@ public class Car {
         return this.moveDistance.compareTo(other) == 0;
     }
 
-    public String printCarName() {
+    public String generateRaceResultPrintString() {
+        return carName.toString() + Constants.COLON_DELIMITER + moveDistance.toString();
+    }
+
+    public String generatePrintCarName() {
         return carName.toString();
     }
 
-    public String printMoveDistance() {
-        return moveDistance.toString();
-    }
 }
